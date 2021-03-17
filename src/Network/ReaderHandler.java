@@ -19,6 +19,18 @@ public class ReaderHandler extends Thread {
         this.repository = repository;
     }
 
+    public void sendStringToAllClient(String text) throws IOException {
+        for (int index = 0; index < repository.readers.size(); index++) {
+            ReaderHandler rh = repository.readers.get(index);
+            rh.sendStringToClient(text);
+        }
+    }
+
+    public void sendStringToClient(String text) throws IOException {
+        dos.writeUTF(text);
+        dos.flush();
+    }
+
     public void sendReaderListToReader(ArrayList<ReaderHandler> list) throws IOException {
         for (ReaderHandler readerHandler : list) {
             dos.writeUTF(readerHandler.getSocket().getRemoteSocketAddress().toString());
@@ -39,11 +51,9 @@ public class ReaderHandler extends Thread {
                 }
                 String textIn = dis.readUTF();
                 if (textIn.equals("list")){
-                    sendReaderListToReader(repository.readers);
+                    sendReaderListToReader(this.repository.readers);
                 }
-                if(textIn.equalsIgnoreCase("quit")){
-                    this.shouldRun = false;
-                }
+                sendStringToAllClient(textIn);
             }
 
             dis.close();

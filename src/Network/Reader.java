@@ -10,7 +10,6 @@ public class Reader {
 
 
     ReaderConnection rc;
-    boolean shouldRun = true;
 
     public static void main(String[] args){
         new Reader();
@@ -23,8 +22,6 @@ public class Reader {
             rc.start();
 
             listenForInput();
-
-            rc.close();
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -33,7 +30,7 @@ public class Reader {
 
     public void listenForInput() throws IOException {
         Scanner csn = new Scanner(System.in);
-        while (shouldRun){
+        while (true){
             while(!csn.hasNextLine()){
                 try{
                     Thread.sleep(1);
@@ -42,12 +39,12 @@ public class Reader {
                 }
             }
             String input = csn.nextLine();
-            rc.sendStringToServer(input);
 
-            if (input.equalsIgnoreCase("quit")){
-                shouldRun=false;
+            if (input.toLowerCase().equals("quit")){
                 break;
             }
+
+            rc.sendStringToServer(input);
         }
         rc.close();
 

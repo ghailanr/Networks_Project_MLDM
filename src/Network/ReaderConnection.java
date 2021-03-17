@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class ReaderConnection extends Thread {
 
-    Socket socket;
+    Socket s;
     DataInputStream dis;
     DataOutputStream dos;
     boolean shouldRun = true;
@@ -15,7 +15,7 @@ public class ReaderConnection extends Thread {
 
 
     public ReaderConnection(Socket socket, Reader reader) {
-        this.socket = socket;
+        s = socket;
         this.reader = reader;
     }
 
@@ -27,18 +27,18 @@ public class ReaderConnection extends Thread {
 
     public void run() {
         try {
-            dis = new DataInputStream(socket.getInputStream());
-            dos = new DataOutputStream(socket.getOutputStream());
+            dis = new DataInputStream(s.getInputStream());
+            dos = new DataOutputStream(s.getOutputStream());
 
             while (shouldRun) {
                 try {
-                    while (dis.available() == 0) { //TODO using "quit" causes an IOException due to dis being closed -> new Thread?
+                    while (dis.available() == 0) {
                         try {
                             Thread.sleep(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                            shouldRun = false;
                             break;
+
                         }
                     }
                     String reply = dis.readUTF();
@@ -46,7 +46,7 @@ public class ReaderConnection extends Thread {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    shouldRun = false;
+                    close();
                     break;
                 }
             }
@@ -61,8 +61,7 @@ public class ReaderConnection extends Thread {
         try{
             dis.close();
             dos.close();
-            socket.close();
-            this.shouldRun = false;
+            s.close();
         } catch (IOException e){
             e.printStackTrace();
         }
