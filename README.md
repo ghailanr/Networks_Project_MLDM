@@ -14,6 +14,9 @@ updated regularly. The scope of action is limited to the localhost.
 On the data management part, nothing testable has been done yet. The models are still at their beginning and the protocols
 to exchange datas haven't been done as of now.
 
+I've seen multiple example of source code to understand what everything does. However I actually never used it directly and
+wrote everything by myself.
+
 **Part II - How to build**
 
 To launch and experiment, you need to first run the Repository and then run the Reader. To simulate multiple Readers, 
