@@ -1,5 +1,5 @@
+/*
 package Datas;
-
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,12 +25,12 @@ public class Descifier {
         this.pageSize = pageSize;
         this.book = getBook(bookName);
         ArrayList<String> pagesSHA1 = new ArrayList<>();
-        for (int i = 0; i < bookSize/pageSize + 1; i++){
-            //pagesSHA1.add(bytesToSHA1(this.book.getPage(i))); TODO make it so a Page is a byte[] object
+        for (byte[] page : this.book.Pages){
+            pagesSHA1.add(bytesToSHA1(page));
         }
     }
 
-    // inspired by: http://www.mkyong.com/java/how-to-generate-a-file-checksum-value-in-java/
+    // copy/pasted method given in the project description
     public static String bytesToSHA1(byte[] bytes) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
@@ -70,4 +70,4 @@ public class Descifier {
     }
 
 
-}
+}*/

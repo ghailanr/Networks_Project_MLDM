@@ -1,16 +1,20 @@
 package Datas;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Book implements Serializable {
-    private ArrayList<Page> listPages = new ArrayList<>();
-    private String desc;
 
-    public Book(){
+    String filePath;
+    int pageSize;
+    ArrayList<byte[]> Pages;
+
+
+    public Book(File desc){
+
     }
 
-    public Page getPage(int index){
-        return this.listPages.get(index);
-    }
+
+
 }

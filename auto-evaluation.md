@@ -9,6 +9,19 @@ that list to the Readers that ask for it.
 The Readers can ask the repository for the list of the other currently connected Readers' IP but do not handle yet interactions
 between one another.
 
+**Results compared to objectives**
+Considering the context in which I put myself into, I knew that I wouldn't have the time to finish it. However I believed that I could at least 
+achieve the networking part of the project (i.e : having a repository handling multiple readers and readers being able to interact with one another).
+On that, I consider the repository to be working as intended. On the other hand, the readers aren't able to initiate a connection to one another.
+
+
+**Time investment**
+
+I did not really keep track of the time I worked on this project. An honest fork would be between 30h and 40h. A third of 
+it was spent looking at documentations and methodology (both from the classes and online). 
+
+
+
 
 **Good Development Practices**
 

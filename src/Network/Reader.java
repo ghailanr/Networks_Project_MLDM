@@ -3,6 +3,7 @@ package Network;
 
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class Reader {
 
     ReaderConnection rc;
     boolean shouldRun = true;
+    ServerSocket ss;
 
     public static void main(String[] args){
         new Reader();
@@ -18,9 +20,16 @@ public class Reader {
 
     public Reader(){
         try {
+            System.out.println("Choose reader port :\n");
+            Scanner scn = new Scanner(System.in);
+            int readerPort = Integer.parseInt(scn.nextLine());
+
             Socket s = new Socket("localhost", 8080);
+            ss = new ServerSocket(readerPort);
             rc = new ReaderConnection(s, this);
             rc.start();
+            ReaderSocketListener listener = new ReaderSocketListener(ss, this);
+            listener.start();
 
             listenForInput();
 

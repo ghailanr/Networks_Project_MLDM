@@ -22,7 +22,7 @@ wrote everything by myself.
 To launch and experiment, you need to first run the Repository and then run the Reader. To simulate multiple Readers, 
 launch it multiple times in a different terminal. 
 The Readers listen to what is being written in their terminal. Typing "list" will ask the Repository for its list of 
-Readers currently connected, wherteas "quit" will disconnect and stop the Reader.
+Readers currently connected, whereas "quit" will disconnect and stop the Reader.
 
 **Part III - Architecture description**
 
@@ -33,4 +33,7 @@ The RepositoryAcceptConnection thread, upon accepting a connection, will start a
 all the communications between the Reader and the Repository (sending the list of Readers or shutting down when the Reader leaves).
 
 The Reader will, after acquiring a Socket, launch a thread ReaderConnection that will handle all its communications with 
-the Repository (using the ReaderHandler thread that was assigned to it). The Reader main task is to listen to the user's input.
+the Repository (using the ReaderHandler thread that was assigned to it). It will also launch a ReaderSocketListener thread which role
+is to accept connections from other readers and either initiate a file exchange (the thread resposible for the sending has yet to be
+implemented). The Reader main task is to listen to the user's input and either query the repository for a list of readers or initiate a connection
+with another Reader to download a page (thread not yet implemented).
