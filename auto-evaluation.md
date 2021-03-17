@@ -12,7 +12,25 @@ between one another.
 
 **Good Development Practices**
 
-About documents : the markdown files are ok. 
+1 - About documents : the markdown files are ok. 
 
-About git :
+2 - About git : 
+* No generated files and no zip files
+* Commit/pushes made when an issue has been solved
+* Very descriptive commit messages
+* English for all commit messages
+* No pair programming
+
+3 - About the code :
+* Code is in english 100%
+* Code is indented and formatted properly
+* No mix between spaces and tabs
+* Use of the Java convention
+
+4 - About software :
+* Very few testing
+* No automated tests
+* No stress tests
+* No tests for bad behavior
+* No documentation
 
