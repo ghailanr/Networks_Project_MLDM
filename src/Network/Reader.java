@@ -30,7 +30,6 @@ public class Reader {
 
         }
     }
-
     public void listenForInput() throws IOException {
         Scanner csn = new Scanner(System.in);
         while (shouldRun){
